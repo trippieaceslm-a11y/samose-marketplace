@@ -1128,4 +1128,93 @@ body::before{
   .swipe-hint {
     display: block; /* Shows on phones */
   }
+} 
+
+/* --- TESTIMONIAL CAROUSEL --- */
+.review-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 15px;
+  padding-bottom: 15px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.review-carousel::-webkit-scrollbar {
+  display: none; /* Hides scrollbar */
+}
+
+.review-card {
+  flex: 0 0 80%; /* Shows 80% of card, peeking the next one */
+  scroll-snap-align: start;
+  background: #212225;
+  border: 1px solid rgba(245, 197, 66, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.review-card p {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #d1d5db;
+  margin: 10px 0;
+}
+
+.review-author {
+  display: block;
+  font-size: 0.8rem;
+  color: #f5c542;
+  font-weight: bold;
+}
+
+/* On desktop, show 3 cards side-by-side */
+@media (min-width: 700px) {
+  .review-card { flex: 0 0 30%; }
+}
+
+/* --- 3D CAROUSEL STYLES --- */
+.mySwiper {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 200px; /* Size of the cards in the carousel */
+  height: 260px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #f5c542; /* Gold border */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+/* Override the old grid layout so Swiper works perfectly */
+#more-grid {
+  display: flex !important; 
+  flex-wrap: nowrap !important;
+}
+
+/* Style the little navigation dots at the bottom */
+.swiper-pagination-bullet {
+  background: #ffffff !important;
+}
+.swiper-pagination-bullet-active {
+  background: #f5c542 !important; /* Gold active dot */
+}
+.biz-listings {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  
+  /* ADD THIS LINE 👇 */
+  align-items: start; 
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -28,6 +27,8 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://samose-marketplace.vercel.app/metaDesription1.png">
   <link rel="icon" type="favicon.png.png" href="favicon.png.png">
+  <!-- Swiper.js CSS for 3D Carousel -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -49,7 +50,7 @@
     <p>Browse BnBs by neighborhood and book instantly on WhatsApp.</p>
     <div class="hero-buttons">
     <a class="btn" href="#bnb">Browse Stays</a>
-    <a class="btn-call-btn" href="tel:+254795957955">📞Call us Directly</a>
+    <a class="btn call-btn" href="tel:+254795957955">📞Call us Directly</a>
   </div>
   </section>
 
@@ -58,8 +59,8 @@
 
     <div class="filters">
       <button class="tag active" data-area="all">All</button>
-      <button class="tag" data-area="Tudor">Railways</button>
-      <button class="tag" data-area="Kizingo">Sabasaba</button>
+      <button class="tag" data-area="Railways">Railways</button>
+      <button class="tag" data-area="Sabasaba">Sabasaba</button>
       <button class="tag" data-area="Ganjoni">Ganjoni</button>
       <button class="tag" data-area="Nyali">Nyali</button>
       <button class="tag" data-area="Bamburi">Bamburi</button>
@@ -205,7 +206,6 @@
     <p>Payment on delivery/Physically at the shop</p>
 
     <div class="jersey-box">
-      <div></div>
     <div class="thrift-tabs">
       <button class="thrift-tab active"data-target="tab-jerseys">Jerseys</button>
       <button class="thrift-tab"data-target="tab-shoes">Shoes</button>
@@ -214,13 +214,13 @@
 
     <!--TAB 1:JERSEYS-->
     <div id="tab-jerseys" class="tab-content active">
-      <!-- Football Boots Item -->
+        <div class="jersey-grid">
+              <!-- Football Boots Item -->
 <div class="jersey" data-name="Football Boots" data-price="KES 2,000 - KES4,500" data-more="Trainer.jpeg,NikeMercurialVapor16.jpeg,NikePhantomGXElite.jpeg,NikePhantomGXgreen.jpeg,F50.jpeg">
   <img src="NikeMercurialVapor16.jpeg">
   <span>Football Boots</span>
   <b>KES 2,000 - 4,500</b>
 </div>
-        <div class="jersey-grid">
       <div class="jersey" data-name="Chelsea FC" data-price="KES 1,000"data-more="chelsea1.jpeg,chelsea2.jpeg,chelsea3.jpeg">
         <img src="CHELSEA.jpeg" alt="Chelsea jersey">
         <span>Chelsea FC</span>
@@ -400,6 +400,31 @@
   </section>
 
   <footer id="contact" class="site-footer">
+    <!-- TESTIMONIAL CAROUSEL -->
+<section class="section" id="reviews">
+  <h2>What Our Customers Say</h2>
+  <div class="review-carousel">
+    
+    <div class="review-card">
+      <span class="stars">★★★★★</span>
+      <p>"Got my Chelsea jersey delivered to my hostel in 10 minutes. Very legit!"</p>
+      <span class="review-author">- Brian, TUM</span>
+    </div>
+
+    <div class="review-card">
+      <span class="stars">★★★★★</span>
+      <p>"The Nyali beach villa was exactly as pictured. Booking through WhatsApp was so easy."</p>
+      <span class="review-author">- Sarah, Local Tourist</span>
+    </div>
+
+    <div class="review-card">
+      <span class="stars">★★★★★</span>
+      <p>"KecheiTech formatted my projects overtime. Saves my semester!"</p>
+      <span class="review-author">- Kevin, TUM</span>
+    </div>
+
+  </div>
+</section>
     <p>Samose Marketplace Hub Mombasa</p>
     <p>📲Call/WhatsApp:<a href="tel:+254795957955">+254795957955</a></p>
     <p>List your Business/rentals with us: <a href="https://wa.me/254795957955?text=Hi%2C%20I%20want%20to%20list%20my%20property%20on%20Samose%20Marketplace">message us</a></p>
@@ -410,10 +435,21 @@
     <span id="more-close">&times;</span>
     <h3 id="more-title"></h3>
     <p>Tap the one you want</p>
-    <div id="more-grid"></div>
+    
+    <!-- NEW 3D CAROUSEL STRUCTURE -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper" id="more-grid">
+        <!-- Images will be injected here by JS -->
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
   </div>
 </div>
 <a href="#top"id="home-btn">Home</a>
-<script src="script.js"></script>
+<!-- Swiper.js JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <script src="script.js"></script>
 </body>
 </html>

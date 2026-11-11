@@ -125,34 +125,90 @@ const moreGrid = document.getElementById('more-grid');
 const moreTitle = document.getElementById('more-title');
 let skipPopup = false;
 
-document.querySelectorAll('.jersey[data-more]').forEach(jersey => {
-  const baseName = jersey.dataset.name;
-  const firstPhoto = jersey.querySelector('img').getAttribute('src');
+// --- 3D POPUP CAROUSEL LOGIC ---
+let swiperInstance = null; // Keep track of the carousel instance
 
-  jersey.addEventListener('click', () => {
-    if (skipPopup) return;
-    moreTitle.textContent = baseName + ' jerseys';
-    moreGrid.innerHTML = '';
+// Select both jerseys and secondhand gallery items
+const clickableItems = document.querySelectorAll('.jersey, .sh-item');
 
-    const files = [firstPhoto,...jersey.dataset.more.split(',').map(f => f.trim())];
-    files.forEach(file => {
+clickableItems.forEach(item => {
+  item.addEventListener('click', function() {
+    
+    // 1. Grab the images
+    let images = [];
+    if (this.classList.contains('jersey')) {
+      const imgData = this.getAttribute('data-more');
+      if (imgData) {
+        images = imgData.split(',');
+      } else {
+        images = [this.querySelector('img').src]; // Fallback to main image
+      }
+    } else {
+      images = [this.getAttribute('data-more')];
+    }
+
+    // 2. Set the Title
+    const title = this.getAttribute('data-name') || "Item Photos";
+    document.getElementById("more-title").innerText = title;
+    
+    // 3. Clear old images from the carousel
+    const swiperWrapper = document.getElementById("more-grid");
+    swiperWrapper.innerHTML = "";
+
+    // 4. Add new images as Swiper slides
+    images.forEach(imgSrc => {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      
       const img = document.createElement('img');
-      img.src = file;
+      img.src = imgSrc.trim();
+      
+      // Optional: Clicking an image inside the carousel closes the popup
       img.addEventListener('click', () => {
-        jersey.querySelector('img').src = file;
-        jersey.dataset.name = `${baseName} (${file})`;
-        morePopup.classList.remove('open');
-        skipPopup = true;
-        jersey.click();
-        skipPopup = false;
+        document.getElementById("more-popup").classList.remove("open");
       });
-      moreGrid.appendChild(img);
+      
+      slide.appendChild(img);
+      swiperWrapper.appendChild(slide);
     });
 
-    morePopup.classList.add('open');
+    // 5. Open the popup container
+    document.getElementById("more-popup").classList.add("open");
+
+    // 6. Destroy the previous Swiper instance so it doesn't glitch
+    if (swiperInstance) {
+      swiperInstance.destroy(true, true);
+    }
+
+    // 7. Initialize the 3D Coverflow Carousel
+    swiperInstance = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      loop: false, // Set to false to prevent infinite glitching with few images
+      coverflowEffect: {
+        rotate: 35, // Angle of the side cards
+        stretch: 0,
+        depth: 150, // How far back the side cards go
+        modifier: 1,
+        slideShadows: true, // Adds the cool shadows
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
   });
 });
 
+// Close popup button logic (if you don't already have it)
+const moreCloseBtn = document.getElementById("more-close");
+if (moreCloseBtn) {
+  moreCloseBtn.addEventListener("click", () => {
+    document.getElementById("more-popup").classList.remove("open");
+  });
+}
 document.getElementById('more-close').addEventListener('click', () => {
   morePopup.classList.remove('open');
 });
