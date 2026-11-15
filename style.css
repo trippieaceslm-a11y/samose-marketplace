@@ -1218,3 +1218,95 @@ body::before{
   /* ADD THIS LINE 👇 */
   align-items: start; 
 }
+
+/* --- PILLAR 3: 3C CATERING (Blurred Background) --- */
+.catering-container {
+  position: relative;
+  border: 2px solid #f5c542;
+  border-radius: 16px;
+  padding: 30px 20px;
+  margin-top: 20px;
+  overflow: hidden; /* Keeps the blurry edges inside the rounded corners */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+}
+
+/* The Blurred Background Layer */
+.catering-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('3c.bscard1.jpeg'); /* Your flyer */
+  background-size: cover;
+  background-position: center;
+  
+  /* 👇 THE BLUR EFFECT 👇 */
+  filter: blur(2px); 
+  
+  /* This scales the image slightly so the blurry edges don't show a white border */
+  transform: scale(1.1); 
+  
+  z-index: 0; /* Puts it behind the text */
+}
+
+/* The Text Box */
+.catering-details {
+  position: relative;
+  z-index: 2; /* Keeps text on top */
+  width: 100%;
+  max-width: 600px;
+  
+  /* I made this slightly more opaque so the text is easy to read over the blur */
+  background: rgba(33, 34, 37, 0.9); 
+  
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(245, 197, 66, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); /* Adds a nice shadow */
+}
+
+/* Keep the rest of the styles the same */
+.catering-details h3 {
+  color: #f5c542;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.catering-details p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.catering-contact {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #25d366;
+}
+
+.catering-contact p {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.catering-contact a {
+  color: #f5c542;
+  text-decoration: none;
+  font-weight: bolder;
+}
+
+.catering-details .btn.whatsapp {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #25d366;
+  color: #fff;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+}
